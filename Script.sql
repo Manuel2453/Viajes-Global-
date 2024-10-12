@@ -91,18 +91,11 @@ CREATE TABLE Transporte (
     Origen VARCHAR(100),
     Destino VARCHAR(100),
     Fecha DATE,
-    Precio DECIMAL(10, 2),
+    Precio te DECIMAL(10, 2),
     ID_Paquete INT,
     FOREIGN KEY (ID_Paquete) REFERENCES PaqueteTuristico(ID_Paquete)
 );
 
--- Usuarios
-INSERT INTO Usuario (Nombre, Correo_Electronico, Contrasena, Preferencias_Notificacion) VALUES
-('Juan Pérez', 'juan.perez@gmail.com', '123456', 'Correo'),
-('Ana López', 'ana.lopez@gmail.com', 'abcdef', 'SMS'),
-('Carlos García', 'carlos.garcia@gmail.com', 'qwerty', 'Correo'),
-('María Martínez', 'maria.martinez@gmail.com', 'contrasena', 'Push'),
-('Luis Rodríguez', 'luis.rodriguez@gmail.com', '111222', 'SMS');
 
 -- Paquetes Turísticos
 INSERT INTO PaqueteTuristico (Nombre, Descripcion, Precio, Destino, Fechas, Servicios_Incluidos) VALUES
