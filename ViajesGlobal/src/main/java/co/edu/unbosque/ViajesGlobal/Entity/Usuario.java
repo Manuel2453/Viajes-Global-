@@ -15,9 +15,13 @@ public class Usuario {
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
+    @Column(name = "correo_electronico")
     @Email(message = "El correo electrónico no es válido")
     @NotBlank(message = "El correo electrónico es obligatorio")
     private String correoElectronico;
+
+    @NotBlank(message = "El usuario es obligatorio")
+    private String usuario;
 
     @NotBlank(message = "La contraseña es obligatoria")
     private String contrasena;
@@ -25,6 +29,7 @@ public class Usuario {
     @NotBlank(message = "El teléfono es obligatorio")
     private String telefono;
 
+    @Enumerated(EnumType.STRING)
     @NotBlank(message = "Las preferencias de notificación son obligatorias")
     private NotificacionTipo preferenciasNotificacion; // Cambiado a NotificacionTipo
 
@@ -75,5 +80,14 @@ public class Usuario {
 	public void setPreferenciasNotificacion(NotificacionTipo preferenciasNotificacion) {
 		this.preferenciasNotificacion = preferenciasNotificacion;
 	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	
     
 }
