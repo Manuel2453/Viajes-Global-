@@ -6,10 +6,11 @@ public class UsuarioDTO {
     private String nombre;
     private String telefono;
     private String correoElectronico;
+    private String usuario;
     private String contrasena;
-    private NotificacionTipo preferenciasNotificacion; 
+    private NotificacionTipo preferenciasNotificacion; // Asegúrate de que sea del tipo correcto
 
-    // Getters y setters
+	// Getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -50,7 +51,15 @@ public class UsuarioDTO {
         this.preferenciasNotificacion = preferenciasNotificacion;
     }
 
-public UsuarioDTO(String nombre, String telefono, String correoElectronico, String usuario, String contrasena,
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public UsuarioDTO(String nombre, String telefono, String correoElectronico, String usuario, String contrasena,
 			NotificacionTipo preferenciasNotificacion) {
 		super();
 		this.nombre = nombre;
@@ -60,4 +69,5 @@ public UsuarioDTO(String nombre, String telefono, String correoElectronico, Stri
 		this.contrasena = contrasena;
 		this.preferenciasNotificacion = preferenciasNotificacion;
 	}
+
 }
