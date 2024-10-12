@@ -4,7 +4,8 @@ Use ViajesGlobal;
 CREATE TABLE Usuario (
     ID_Usuario INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(100),
-    Correo_Electronico VARCHAR(100),
+    Correo_Electronico VARCHAR(255),
+    Usuario VARCHAR(255),
     Contrasena VARCHAR(100),
     Preferencias_Notificacion VARCHAR(255)
 );
