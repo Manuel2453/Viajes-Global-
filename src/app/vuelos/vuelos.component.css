@@ -1,0 +1,139 @@
+:host {
+    --bright-blue: oklch(70% 0.1455 198.53);
+    --electric-violet: oklch(53.18% 0.28 296.97);
+    --french-violet: oklch(47.66% 0.246 305.88);
+    --vivid-pink: oklch(69.02% 0.277 332.77);
+    --background-color: #f7f7f7;
+
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--gray-900);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.options {
+    display: flex;
+    justify-content: center; /* Centrar elementos */
+    gap: 2rem; /* Espacio entre elementos */
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.option-group,
+.passenger-selector,
+.class-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-group select,
+.passenger-selector select,
+.class-selector select {
+    width: 120%; /* Hacer el select un poco más largo */
+}
+
+.passenger-selector label,
+.class-selector label,
+.option-group label {
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem; /* Espacio entre las cajas */
+}
+
+.form-item {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+
+.form-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pill {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--electric-violet);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+}
+
+.pill:hover {
+    background-color: var(--bright-blue);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+.autocomplete-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .autocomplete-dropdown {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .autocomplete-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .autocomplete-item:hover {
+    background-color: #f0f0f0;
+  }
+  

@@ -3,11 +3,6 @@
     --electric-violet: oklch(53.18% 0.28 296.97);
     --french-violet: oklch(47.66% 0.246 305.88);
     --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
 
     --red-to-pink-to-purple-vertical-gradient: linear-gradient(
         180deg,
@@ -48,12 +43,12 @@ p {
 }
 
 main {
-    width: 100%;
-    min-height: 100vh; 
+    width: 90%;
+    min-height: 75vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 4rem;
     position: relative;
 }
 
@@ -63,7 +58,7 @@ main {
     justify-content: center;
     align-items: center; /* Centrar contenido */
     width: 100%;
-    max-width: 800px; 
+    max-width: 600px; 
     margin: 0 auto; 
     padding: 2rem;
     background: white; 

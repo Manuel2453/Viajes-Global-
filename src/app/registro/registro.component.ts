@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css'],
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule,  HttpClientModule]
 })
 export class RegisterComponent {
-  private apiUrl = 'http://localhost:8080/api/usuarios/crearUsuario';
+  private apiUrl = 'http://localhost:8080/api/usuarios/crearUsuario'; // Cambia a tu URL correcta
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -20,10 +21,14 @@ export class RegisterComponent {
     const usuario = {
       nombre: form.value.nombre,
       telefono: form.value.telefono,
-      correo_electronico: form.value.correoElectronico,
+      correoElectronico: form.value.correoElectronico,
+      usuario: form.value.usuario,
       contrasena: form.value.contrasena,
-      preferencias_notificacion: form.value.preferenciasNotificacion
+      preferenciasNotificacion: form.value.preferenciasNotificacion
     };
+
+    console.log("Datos del usuario antes de enviar:", usuario); 
+    console.log("preferencia de notificación: ", form.value.preferenciasNotificacion  )
 
     // Enviar la solicitud POST con el cuerpo (usuario) en formato JSON
     this.http.post(this.apiUrl, usuario)

@@ -14,4 +14,10 @@ export class UsuarioService {
   crearUsuario(params: HttpParams): Observable<any> {
     return this.http.post(this.apiUrl, null, { params });
   }
+
+  login(correo: string, contrasena: string): Observable<any> {
+    const loginData = { correoElectronico: correo, contrasena: contrasena };
+    return this.http.post('http://localhost:8080/api/usuarios/login', loginData);
+  }
+  
 }

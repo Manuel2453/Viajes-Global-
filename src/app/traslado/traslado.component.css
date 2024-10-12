@@ -1,0 +1,72 @@
+:host {
+    --bright-blue: oklch(70% 0.1455 198.53);
+    --electric-violet: oklch(53.18% 0.28 296.97);
+    --french-violet: oklch(47.66% 0.246 305.88);
+    --vivid-pink: oklch(69.02% 0.277 332.77);
+    --background-color: #f7f7f7;
+
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    padding: 2rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between; /* Distribuir espacio entre elementos */
+    margin-bottom: 1rem;
+}
+
+.form-item {
+    flex: 1; /* Permitir que todos los elementos ocupen el mismo espacio */
+    margin: 0 0.5rem; /* Espaciado entre elementos */
+}
+
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+select, input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
+    width: 80%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.pill {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--electric-violet);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    margin-top: 1rem; /* Añadir espacio superior */
+}
+
+.pill:hover {
+    background-color: var(--bright-blue);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}

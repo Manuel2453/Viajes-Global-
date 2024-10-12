@@ -1,0 +1,66 @@
+<div class="content">
+    <h2>Reservar Traslado</h2>
+
+    <!-- Selección de Tipo de Transporte y Empresa -->
+    <div class="form-group">
+        <div class="form-item">
+            <label for="tipo-transporte">Tipo de Transporte:</label>
+            <select [(ngModel)]="tipoTransporte" id="tipo-transporte">
+                <option value="">Selecciona un tipo de transporte</option>
+                <option value="Bus">Bus</option>
+                <option value="TransportePrivado">Transporte Privado</option>
+                <option value="Carro">Carro</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label for="empresa">Empresa:</label>
+            <select [(ngModel)]="empresa" id="empresa">
+                <option value="">Selecciona una empresa</option>
+                <option value="Velotax">Velotax</option>
+                <option value="Macarena">Macarena</option>
+                <option value="EuroRail">EuroRail</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Selección de Ciudad de Origen y Destino -->
+    <div class="form-group">
+        <div class="form-item">
+            <label for="origen">Origen:</label>
+            <select [(ngModel)]="selectedCiudadOrigen" id="origen">
+                <option value="">Selecciona una ciudad</option>
+                <option *ngFor="let ciudad of filteredCiudadesOrigen" [value]="ciudad">
+                    {{ ciudad }}
+                </option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label for="destino">Destino:</label>
+            <select [(ngModel)]="selectedCiudadDestino" id="destino">
+                <option value="">Selecciona una ciudad</option>
+                <option *ngFor="let ciudad of filteredCiudadesDestino" [value]="ciudad">
+                    {{ ciudad }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Selección de Fecha, Hora y Cantidad de Personas -->
+    <div class="form-group">
+        <div class="form-item">
+            <label for="fecha-traslado">Fecha:</label>
+            <input type="date" id="fecha-traslado" [(ngModel)]="fechaTraslado">
+        </div>
+        <div class="form-item">
+            <label for="hora-traslado">Hora:</label>
+            <input type="time" id="hora-traslado" [(ngModel)]="horaTraslado">
+        </div>
+        <div class="form-item">
+            <label for="cantidad-personas">Cantidad de Personas:</label>
+            <input type="number" id="cantidad-personas" [(ngModel)]="cantidadPersonas" min="1" placeholder="Número de personas">
+        </div>
+    </div>
+
+    <!-- Botón de Enviar -->
+    <button type="submit" class="pill" (click)="enviarTraslado()">Reservar Traslado</button>
+</div>
