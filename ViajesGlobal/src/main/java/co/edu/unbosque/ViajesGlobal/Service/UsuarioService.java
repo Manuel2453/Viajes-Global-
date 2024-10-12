@@ -14,18 +14,24 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario registrarUsuario(UsuarioDTO usuarioDTO) {
-//        if (usuarioRepository.findByCorreoElectronico(usuarioDTO.getCorreoElectronico()) != null) {
-//            throw new RuntimeException("El correo electrónico ya está registrado.");
-//        }
-
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(usuarioDTO.getNombre());
         nuevoUsuario.setTelefono(usuarioDTO.getTelefono());
         nuevoUsuario.setCorreoElectronico(usuarioDTO.getCorreoElectronico());
+        nuevoUsuario.setUsuario(usuarioDTO.getUsuario()); // Asegúrate de que UsuarioDTO tenga el nuevo campo
         nuevoUsuario.setContrasena(usuarioDTO.getContrasena());
         nuevoUsuario.setPreferenciasNotificacion(usuarioDTO.getPreferenciasNotificacion()); // Esto ahora es de tipo NotificacionTipo
 
         return usuarioRepository.save(nuevoUsuario);
     }
 
+    
+    public Usuario autenticarUsuario(String usuario, String contrasena) {
+        Usuario usuario1 = usuarioRepository.findByUsuario(usuario); // Cambiado para buscar por nombre de usuario
+        if (usuario1 != null && usuario1.getContrasena().equals(contrasena)) {
+            return usuario1;
+        } else {
+            return null; // Si no coincide o no existe, retorna null.
+        }
+    }
 }
