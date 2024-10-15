@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule para usa
   imports: [RouterModule, RouterOutlet, RouterLink, CommonModule]  // Agrega CommonModule aquí
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   showMainContent: boolean = true; // Nueva variable para controlar la visibilidad de la sección principal
 
   // Variables para los datos del usuario
