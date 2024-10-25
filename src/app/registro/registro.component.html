@@ -1,42 +1,43 @@
 <main class="main">
-  <div class="register-container">
-      <h2>Registro de Usuario</h2>
-      <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-          <div class="form-group">
-              <label for="nombre">Nombre Completo:</label>
-              <input type="text" id="nombre" name="nombre" ngModel required>
-          </div>
+    <div class="register-container">
+        <h2>📝 Registro de Usuario</h2> <!-- Agregado emoji -->
+        <br>
+        <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo: 🧑</label> <!-- Emoji de persona -->
+                <input type="text" id="nombre" name="nombre" ngModel required>
+            </div>
 
-          <div class="form-group">
-              <label for="telefono">Teléfono:</label>
-              <input type="text" id="telefono" name="telefono" ngModel required>
-          </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono: 📞</label> <!-- Emoji de teléfono -->
+                <input type="text" id="telefono" name="telefono" ngModel required>
+            </div>
 
-          <div class="form-group">
-              <label for="correoElectronico">Correo Electrónico:</label>
-              <input type="email" id="correoElectronico" name="correoElectronico" ngModel required>
-          </div>
+            <div class="form-group">
+                <label for="correoElectronico">Correo Electrónico: 📧</label> <!-- Emoji de correo electrónico -->
+                <input type="email" id="correoElectronico" name="correoElectronico" ngModel required>
+            </div>
 
-          <div class="form-group">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" ngModel required>
-        </div>
-        
-          <div class="form-group">
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" id="contrasena" name="contrasena" ngModel required>
-          </div>
+            <div class="form-group">
+              <label for="usuario">Usuario: 👤</label> <!-- Emoji de usuario -->
+              <input type="text" id="usuario" name="usuario" ngModel required>
+            </div>
+          
+            <div class="form-group">
+                <label for="contrasena">Contraseña: 🔒</label> <!-- Emoji de candado -->
+                <input type="password" id="contrasena" name="contrasena" ngModel required>
+            </div>
 
-          <div class="form-group">
-              <label for="preferenciasNotificacion">Preferencias de Notificación:</label>
-              <select id="preferenciasNotificacion" name="preferenciasNotificacion" ngModel required>
-                  <option value="Correo">Correo</option>
-                  <option value="SMS">SMS</option>
-                  <option value="Push">Push</option>
-              </select>
-          </div>
+            <div class="form-group">
+                <label for="preferenciasNotificacion">Preferencias de Notificación: 🔔</label> <!-- Emoji de campana -->
+                <select id="preferenciasNotificacion" name="preferenciasNotificacion" ngModel required>
+                    <option value="Correo">Correo</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Push">Push</option>
+                </select>
+            </div>
 
-          <button type="submit" [disabled]="!registerForm.valid">Registrarse</button>
-      </form>
-  </div>      
+            <button type="submit" [disabled]="!registerForm.valid">🚀 Registrarse</button> <!-- Agregado emoji -->
+        </form>
+    </div>      
 </main>

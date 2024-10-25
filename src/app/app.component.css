@@ -4,14 +4,7 @@
     --french-violet: oklch(47.66% 0.246 305.88);
     --vivid-pink: oklch(69.02% 0.277 332.77);
 
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-        180deg,
-        var(--orange-red) 0%,
-        var(--vivid-pink) 50%,
-        var(--electric-violet) 100%
-    );
-
-    --pill-accent: var(--electric-violet);
+    --pill-accent: var(--french-violet);
     --pill-hover: var(--bright-blue);
     --background-color: #f7f7f7;
 
@@ -21,72 +14,80 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--background-color);
+    height: 100vh; /* Asegurarse de que el host ocupe toda la altura de la ventana */
+    width: 100%; /* Asegurarse de que el host ocupe toda la anchura */
     padding: 2rem;
 }
 
-h1 {
-    font-size: 3rem;
-    color: var(--gray-900);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.05rem;
-    margin: 0;
-    text-align: center;
-}
-
-p {
-    margin: 0;
-    color: var(--gray-700);
-    text-align: center;
-    font-size: 1.2rem; /* Aumentar tamaño del texto */
-}
-
 main {
-    width: 90%;
-    min-height: 75vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4rem;
-    position: relative;
+    width: 100%;
+    height: 100%; /* Asegúrate de que el main ocupa toda la altura disponible */
 }
 
 .content {
     display: flex;
-    flex-direction: column; /* Cambiar a columna */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centrar contenido */
+    align-items: center;
     width: 100%;
-    max-width: 600px; 
-    margin: 0 auto; 
-    padding: 2rem;
-    background: white; 
-    border-radius: 12px; /* Aumentar el borde */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Suavizar sombra */
+    max-width: 550px;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(198, 218, 252, 0.8), rgba(241, 228, 255, 0.8));
+    border-radius: 15px; /* Aumentar el borde */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Suavizar sombra */
+    text-align: center;
+    margin-top: 8rem; /* Añadir margen superior para bajar el recuadro */
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--french-violet);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    color: var(--gray-700);
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.gif-container {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.welcome-gif {
+    max-width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .pill-group {
     display: flex;
-    gap: 1rem; 
-    justify-content: center; 
-    margin-top: 1.5rem; /* Añadir margen superior */
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
 }
 
 .pill {
-    padding: 0.75rem 1.5rem; /* Aumentar padding */
+    padding: 0.75rem 1.5rem;
     background-color: var(--pill-accent);
     color: white;
     text-decoration: none;
     border-radius: 25px; /* Aumentar radio del borde */
-    border: none; 
     cursor: pointer; 
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transición de transformación */
+    transition: background-color 0.3s ease, transform 0.2s ease; 
     font-size: 1rem; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .pill:hover {
     background-color: var(--pill-hover); 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px); /* Añadir efecto de elevación */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }

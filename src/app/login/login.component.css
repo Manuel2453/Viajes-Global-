@@ -1,79 +1,98 @@
-/* Estilo común para los contenedores de formularios */
 .form-container {
+    font-family: "text black", sans-serif; /* Aplica la fuente text black */
     max-width: 400px;
-    margin: 2rem auto; /* Añadir margen superior */
-    padding: 2rem; /* Aumentar padding */
-    border: 1px solid #ccc;
-    border-radius: 8px; /* Aumentar el radio del borde */
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Suavizar sombra */
+    margin: 5rem auto; /* Incrementa el margen superior */
+    padding: 2.5rem;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(198, 218, 252, 0.8), rgba(235, 218, 252, 0.8));
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    text-align: center;
 }
+
 
 /* Estilo para los encabezados */
 h2 {
-    text-align: center;
-    color: var(--gray-900);
-    margin-bottom: 1.5rem; /* Añadir margen inferior */
+    font-size: 1.8rem;
+    color: var(--electric-violet);
+    margin-bottom: 1.5rem;
+    font-weight: bold;
 }
 
 /* Estilo para grupos de formulario */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    text-align: left;
 }
 
 /* Estilo para etiquetas */
 label {
     display: block;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 0.5rem;
-    font-weight: 500; /* Hacer el texto más oscuro */
 }
 
 /* Estilo para entradas de texto y selectores */
 input,
 select {
     width: 100%;
-    padding: 0.75rem; /* Aumentar padding */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem; /* Aumentar tamaño de fuente */
-    transition: border-color 0.3s ease; /* Añadir transición */
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna suave */
 }
 
 /* Estilo para el foco en entradas */
 input:focus,
 select:focus {
-    border-color: var(--electric-violet); /* Cambiar color al enfocar */
-    outline: none; /* Quitar borde de enfoque predeterminado */
+    border-color: var(--electric-violet);
+    outline: none;
+    box-shadow: 0 0 6px rgba(100, 100, 250, 0.3); /* Sombra suave al enfocar */
 }
 
 /* Estilo para botones */
 button {
     width: 100%;
-    padding: 0.75rem; /* Aumentar padding */
-    background-color: var(--pill-accent); /* Color de fondo del botón */
+    padding: 0.85rem;
+    background-color: var(--electric-violet);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem; /* Aumentar tamaño de fuente */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transición */
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Suavizar sombra del botón */
 }
 
 /* Estilo para botones al pasar el ratón */
 button:hover {
-    background-color: var(--pill-hover); /* Color al pasar el ratón */
-    transform: translateY(-2px); /* Efecto de elevación */
+    background-color: var(--bright-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Efecto de elevación */
 }
 
 /* Estilo para botones deshabilitados */
 button:disabled {
-    background-color: #ccc; /* Color de fondo para el botón deshabilitado */
-    cursor: not-allowed; /* Cambiar cursor para indicar deshabilitado */
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 /* Estilo para mensajes de error */
 .error-message {
-    color: red;
+    color: #ff4c4c;
+    font-weight: 600;
     margin-top: 10px;
     text-align: center;
+    animation: shake 0.3s ease-in-out; /* Efecto de sacudida */
+}
+
+/* Animación de sacudida para el mensaje de error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }

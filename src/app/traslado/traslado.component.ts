@@ -1,59 +1,55 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule para ngModel
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-traslados',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Import FormsModule
+  imports: [CommonModule, FormsModule],
   templateUrl: './traslado.component.html',
   styleUrls: ['./traslado.component.css']
 })
 export class TrasladosComponent {
-  ciudades: string[] = [
-    'Bogotá', 'Medellín', 'Cartagena', 'Cali', 'Barranquilla',
-    'Santa Marta', 'Bucaramanga', 'Pereira', 'Manizales', 'Armenia',
-    'Montería', 'Villavicencio', 'Cúcuta', 'Pasto', 'Sincelejo',
-    'Valledupar', 'San Andrés', 'Leticia', 'Yopal', 'Tunja'
+  aeropuertos: string[] = [
+    'Aeropuerto El Dorado (Bogotá)',
+    'Aeropuerto José María Córdova (Medellín)',
+    'Aeropuerto Rafael Núñez (Cartagena)',
+    'Aeropuerto Alfonso Bonilla Aragón (Cali)',
+    'Aeropuerto Internacional Simón Bolívar (Santa Marta)',
+    'Aeropuerto Internacional Palonegro (Bucaramanga)',
+    'Aeropuerto Internacional Matecaña (Pereira)',
+    // Más aeropuertos según sea necesario
   ];
-
-  filteredCiudadesOrigen: string[] = this.ciudades;
-  filteredCiudadesDestino: string[] = this.ciudades;
 
   selectedCiudadOrigen: string = '';
   selectedCiudadDestino: string = '';
   tipoTransporte: string = '';
-  empresa: string = '';
   fechaTraslado: string = '';
   horaTraslado: string = '';
-  cantidadPersonas: number = 1;
+  maximoPersonas: number = 1;
 
-  // Filtrar las ciudades según el término de búsqueda
-  filterCiudades(event: Event, isDestino: boolean) {
-    const inputElement = event.target as HTMLInputElement;
-    const searchTerm = inputElement.value.toLowerCase();
+  esDesdeAeropuerto: boolean = false;
+  esHastaAeropuerto: boolean = false;
 
-    const filtered = this.ciudades.filter(ciudad =>
-      ciudad.toLowerCase().includes(searchTerm)
-    );
+  setAeropuertosOrigen() {
+    this.esDesdeAeropuerto = true;
+    this.esHastaAeropuerto = false;
+  }
 
-    if (isDestino) {
-      this.filteredCiudadesDestino = filtered;
-    } else {
-      this.filteredCiudadesOrigen = filtered;
-    }
+  setAeropuertosDestino() {
+    this.esHastaAeropuerto = true;
+    this.esDesdeAeropuerto = false;
   }
 
   // Método para manejar el envío del formulario
   enviarTraslado() {
     console.log('Traslado seleccionado:', {
       tipo: this.tipoTransporte,
-      empresa: this.empresa,
       origen: this.selectedCiudadOrigen,
       destino: this.selectedCiudadDestino,
       fecha: this.fechaTraslado,
       hora: this.horaTraslado,
-      cantidadPersonas: this.cantidadPersonas
+      cantidadPersonas: this.maximoPersonas
     });
     // Lógica adicional para manejar el traslado
   }

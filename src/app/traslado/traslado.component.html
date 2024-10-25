@@ -1,66 +1,74 @@
 <div class="content">
-    <h2>Reservar Traslado</h2>
+    <h2>🚖 Reservar Traslado</h2>
 
-    <!-- Selección de Tipo de Transporte y Empresa -->
+    <!-- Botones de selección para Aeropuerto -->
     <div class="form-group">
+        <label>
+            <input type="radio" [(ngModel)]="esDesdeAeropuerto" (change)="setAeropuertosOrigen()" name="aeropuertoSeleccion" />
+            ✈️ Desde el Aeropuerto
+        </label>
+        <label>
+            <input type="radio" [(ngModel)]="esHastaAeropuerto" (change)="setAeropuertosDestino()" name="aeropuertoSeleccion" />
+            ✈️ Hacia el Aeropuerto
+        </label>
+    </div>
+
+    <!-- Selección de Origen y Destino en una línea -->
+    <div class="form-group row">
         <div class="form-item">
-            <label for="tipo-transporte">Tipo de Transporte:</label>
-            <select [(ngModel)]="tipoTransporte" id="tipo-transporte">
+            <label for="origen">🌍 Origen:</label>
+            <ng-container *ngIf="esDesdeAeropuerto; else ciudadOrigenInput">
+                <select [(ngModel)]="selectedCiudadOrigen" id="origen-select">
+                    <option *ngFor="let aeropuerto of aeropuertos" [value]="aeropuerto">
+                        {{ aeropuerto }}
+                    </option>
+                </select>
+            </ng-container>
+            <ng-template #ciudadOrigenInput>
+                <input type="text" id="origen" [(ngModel)]="selectedCiudadOrigen" placeholder="Introduce la ciudad de origen" required />
+            </ng-template>
+        </div>
+
+        <div class="form-item">
+            <label for="destino">📍 Destino:</label>
+            <ng-container *ngIf="esHastaAeropuerto; else ciudadDestinoInput">
+                <select [(ngModel)]="selectedCiudadDestino" id="destino-select">
+                    <option *ngFor="let aeropuerto of aeropuertos" [value]="aeropuerto">
+                        {{ aeropuerto }}
+                    </option>
+                </select>
+            </ng-container>
+            <ng-template #ciudadDestinoInput>
+                <input type="text" id="destino" [(ngModel)]="selectedCiudadDestino" placeholder="Introduce la ciudad de destino" required />
+            </ng-template>
+        </div>
+    </div>
+
+    <!-- Selección de Tipo de Transporte, Fecha, Hora y Cantidad de Personas en una línea -->
+    <div class="form-group row">
+        <div class="form-item">
+            <label for="tipo-transporte">🚍 Tipo de Transporte:</label>
+            <select [(ngModel)]="tipoTransporte" id="tipo-transporte" required>
                 <option value="">Selecciona un tipo de transporte</option>
-                <option value="Bus">Bus</option>
-                <option value="TransportePrivado">Transporte Privado</option>
-                <option value="Carro">Carro</option>
+                <option value="Carro">🚗 Carro (Maximo 4 personas) </option>
+                <option value="Van">🚐 Van (Maximo 12 personas) </option>
+                <option value="Bus">🚌 Bus (Maximo 40 personas) </option>
             </select>
         </div>
         <div class="form-item">
-            <label for="empresa">Empresa:</label>
-            <select [(ngModel)]="empresa" id="empresa">
-                <option value="">Selecciona una empresa</option>
-                <option value="Velotax">Velotax</option>
-                <option value="Macarena">Macarena</option>
-                <option value="EuroRail">EuroRail</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Selección de Ciudad de Origen y Destino -->
-    <div class="form-group">
-        <div class="form-item">
-            <label for="origen">Origen:</label>
-            <select [(ngModel)]="selectedCiudadOrigen" id="origen">
-                <option value="">Selecciona una ciudad</option>
-                <option *ngFor="let ciudad of filteredCiudadesOrigen" [value]="ciudad">
-                    {{ ciudad }}
-                </option>
-            </select>
+            <label for="fecha-traslado">📅 Fecha:</label>
+            <input type="date" id="fecha-traslado" [(ngModel)]="fechaTraslado" required />
         </div>
         <div class="form-item">
-            <label for="destino">Destino:</label>
-            <select [(ngModel)]="selectedCiudadDestino" id="destino">
-                <option value="">Selecciona una ciudad</option>
-                <option *ngFor="let ciudad of filteredCiudadesDestino" [value]="ciudad">
-                    {{ ciudad }}
-                </option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Selección de Fecha, Hora y Cantidad de Personas -->
-    <div class="form-group">
-        <div class="form-item">
-            <label for="fecha-traslado">Fecha:</label>
-            <input type="date" id="fecha-traslado" [(ngModel)]="fechaTraslado">
+            <label for="hora-traslado">🕒 Hora:</label>
+            <input type="time" id="hora-traslado" [(ngModel)]="horaTraslado" required />
         </div>
         <div class="form-item">
-            <label for="hora-traslado">Hora:</label>
-            <input type="time" id="hora-traslado" [(ngModel)]="horaTraslado">
-        </div>
-        <div class="form-item">
-            <label for="cantidad-personas">Cantidad de Personas:</label>
-            <input type="number" id="cantidad-personas" [(ngModel)]="cantidadPersonas" min="1" placeholder="Número de personas">
+            <label for="cantidad-personas">👥 Cantidad:</label>
+            <input type="number" id="cantidad-personas" [(ngModel)]="maximoPersonas" min="1" max="40" placeholder="Número máximo de personas" required />
         </div>
     </div>
 
     <!-- Botón de Enviar -->
-    <button type="submit" class="pill" (click)="enviarTraslado()">Reservar Traslado</button>
+    <button type="submit" class="pill" (click)="enviarTraslado()">🚀 Reservar Traslado</button>
 </div>

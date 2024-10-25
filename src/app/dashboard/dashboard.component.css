@@ -1,83 +1,77 @@
-:host {
-    --bright-blue: oklch(70% 0.1455 198.53);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-
-    --background-color: #f7f7f7;
-
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-        "Segoe UI Symbol";
-    box-sizing: border-box;
+/* Asegura que el fondo cubra toda la ventana */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bright-blue), var(--french-violet)); /* Fondo gradiente */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--background-color);
-    padding: 2rem; /* Puedes ajustar el padding aquí si es necesario */
 }
 
+/* Contenedor principal con diseño centrado */
 .dashboard-container {
     width: 90%;
-    min-height: 75vh; 
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    position: relative; /* Añadido para posicionamiento absoluto de los botones */
+    padding: 2.5rem;
+    background: white; /* Fondo blanco para que contraste con el gradiente */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
+/* Estilos de cabecera */
 .header {
-    position: absolute; /* Cambiar a posición absoluta */
-    top: 2rem; /* Ajusta la distancia desde la parte superior */
-    right: 2rem; /* Ajusta la distancia desde el lado derecho */
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
     display: flex;
-    justify-content: flex-end; /* Mantener el contenido a la derecha */
+    gap: 1.5rem;
 }
 
 .header-buttons {
     display: flex;
-    gap: 1rem; /* Espacio entre los botones */
+    gap: 1rem;
 }
 
 .header-buttons button {
-    padding: 0.75rem 1.5rem; /* Aumentar padding */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
     background-color: var(--electric-violet);
     color: white;
     border: none;
-    border-radius: 25px; /* Bordes redondeados */
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .header-buttons button:hover {
-    background-color: var(--bright-blue); 
-    transform: translateY(-2px); /* Efecto de elevación */
+    background-color: var(--bright-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos de mensaje de bienvenida */
 .welcome-message {
     text-align: center;
-    color: var(--gray-900);
+    color: var(--french-violet);
+    margin-bottom: 2rem;
 }
 
 .welcome-message h1 {
-    font-size: 3rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 700;
     line-height: 1.2;
-    letter-spacing: -0.05rem;
+    letter-spacing: -0.03rem;
     margin: 0;
-}
-
-.content {
-    display: flex;
-    flex-direction: column; /* Cambiar a columna */
-    justify-content: center;
-    align-items: center; /* Centrar contenido */
-    width: 100%;
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 2rem;
-    background: white; 
-    border-radius: 12px; /* Bordes redondeados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Suavizar sombra */
 }
