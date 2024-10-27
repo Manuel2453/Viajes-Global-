@@ -4,7 +4,6 @@
     --french-violet: oklch(47.66% 0.246 305.88);
     --vivid-pink: oklch(69.02% 0.277 332.77);
     --background-color: #f7f7f7;
-
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol";
@@ -18,7 +17,7 @@ h1 {
     color: var(--gray-900);
     font-weight: 600;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
 }
 
 .content {
@@ -28,17 +27,17 @@ h1 {
     align-items: center;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 7rem auto;
     padding: 2rem;
-    background: white;
+    background: linear-gradient(135deg, rgba(198, 218, 252, 0.8), rgba(235, 218, 252, 0.8));
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .options {
     display: flex;
-    justify-content: center; /* Centrar elementos */
-    gap: 2rem; /* Espacio entre elementos */
+    justify-content: center;
+    gap: 2rem;
     margin-bottom: 1rem;
     width: 100%;
 }
@@ -54,7 +53,7 @@ h1 {
 .option-group select,
 .passenger-selector select,
 .class-selector select {
-    width: 120%; /* Hacer el select un poco más largo */
+    width: 120%;
 }
 
 .passenger-selector label,
@@ -67,17 +66,21 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
-    gap: 1rem; /* Espacio entre las cajas */
+    gap: 1.5rem;
+    white-space: nowrap; /* Mantiene el texto de todas las etiquetas en una sola línea */
 }
 
 .form-item {
     flex: 1;
-    margin: 0 0.5rem;
+    margin: 0 0.8rem;
 }
 
 .form-item label {
     display: block;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+    white-space: nowrap; /* Mantiene el texto de todas las etiquetas en una sola línea */
 }
 
 input[type="text"],
@@ -113,12 +116,13 @@ select {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
+
 .autocomplete-container {
     position: relative;
     width: 100%;
-  }
-  
-  .autocomplete-dropdown {
+}
+
+.autocomplete-dropdown {
     position: absolute;
     z-index: 1000;
     background-color: white;
@@ -126,14 +130,13 @@ select {
     max-height: 200px;
     overflow-y: auto;
     width: 100%;
-  }
-  
-  .autocomplete-item {
+}
+
+.autocomplete-item {
     padding: 8px;
     cursor: pointer;
-  }
-  
-  .autocomplete-item:hover {
+}
+
+.autocomplete-item:hover {
     background-color: #f0f0f0;
-  }
-  
+}

@@ -31,6 +31,10 @@ export class LoginComponent {
     this.http.post('http://localhost:8080/api/usuarios/login', loginData).subscribe(
       (response: any) => {
         console.log('Inicio de sesión exitoso:', response);
+           // Guarda el nombre del usuario en localStorage
+      const mensaje = response.message;
+      const nombreUsuario = mensaje.split(', ')[1].replace('!', ''); // Extrae "Valentina Becerra Sastoque"
+      localStorage.setItem('usuarioNombre', nombreUsuario);
         // Extraer el mensaje de la respuesta
         this.errorMessage = response.message; // Cambiar a usar el mensaje del objeto
         // Redirigir al dashboard si las credenciales son correctas

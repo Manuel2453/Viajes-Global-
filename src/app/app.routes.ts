@@ -4,9 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VuelosComponent } from './vuelos/vuelos.component';
 import { AlojamientosComponent  } from './alojamiento/alojamiento.component';
-import { NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import { TrasladosComponent } from './traslado/traslado.component';
-
+import { PromocionesComponent } from './promociones/promociones.component'; // Importa el componente
 
 export const routes: Routes = [
   { path: 'registrar', component: RegisterComponent },  // Ruta para registro
@@ -16,6 +16,8 @@ export const routes: Routes = [
 //  { path: 'actividades', component: ActividadesComponent },
   { path: 'traslados', component: TrasladosComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'promociones', component: PromocionesComponent }, // Ruta para promociones
+
 ];
 
 @NgModule({

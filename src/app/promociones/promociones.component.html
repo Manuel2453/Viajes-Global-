@@ -1,0 +1,15 @@
+<div class="promociones-container">
+    <h2>Promociones</h2>
+    <div *ngFor="let promo of promociones" class="promocion-card">
+      <p>Origen: {{ promo.origen }}</p>
+      <p>Destino: {{ promo.destino }}</p>
+      <p>Precio: {{ promo.precio | currency: 'COP' }}</p>
+      <p>Días: {{ promo.dias }}</p>
+      <p>Noches: {{ promo.noches }}</p>
+      <p>Vuelo: {{ promo.vuelo_Directo_Escala }}</p>
+      <p>Hotel: {{ promo.hotel }}</p>
+      <p>Fecha Inicio: {{ promo.fecha_Inicio | date: 'dd/MM/yyyy' }}</p>
+      <p>Fecha Fin: {{ promo.fecha_Fin | date: 'dd/MM/yyyy' }}</p>
+    </div>
+  </div>
+  

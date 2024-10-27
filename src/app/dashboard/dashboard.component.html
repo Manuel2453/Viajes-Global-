@@ -1,21 +1,48 @@
 <div class="dashboard-container">
+  <!-- Botones de cabecera alineados en la esquina superior derecha -->
   <div class="header">
     <div class="header-buttons">
-      <button (click)="navigateToVuelos()">
-        ✈️ Vuelos
-      </button>
-      <button (click)="navigateToAlojamientos()">
-        🏨 Alojamientos
-      </button>
-      <button (click)="navigateToActividades()">
-        🎉 Actividades
-      </button>
-      <button (click)="navigateToTraslados()">
-        🚗 Traslados
-      </button>
+      <button (click)="navigateToVuelos()">✈️ Vuelos</button>
+      <button (click)="navigateToAlojamientos()">🏨 Alojamientos</button>
+      <button (click)="navigateToActividades()">🎉 Actividades</button>
+      <button (click)="navigateToTraslados()">🚗 Traslados</button>
     </div>
   </div>
+<br>
+<br>
+<br>
+
   <div class="welcome-message">
     <h1>Bienvenido, {{ usuarioNombre }}!</h1>
+  </div>
+
+  <!-- Contenedor de Promociones -->
+   <!-- Contenedor de Promociones -->
+   <div class="promociones-container">
+    <h2>Promociones</h2>
+    <div *ngFor="let promo of promociones" class="promocion-card">
+      <img [src]="promo.imagen_url || 'assets/default-image.jpg'" alt="Imagen de {{ promo.destino }}">
+
+      <div class="promo-info">
+        <p><strong>Origen:</strong> {{ promo.origen || 'No disponible' }} <strong>Destino:</strong> {{ promo.destino || 'No disponible' }}</p>
+        <p><strong>Precio:</strong> {{ promo.precio | currency:'COP' }}</p>
+        <p><strong>Días:</strong> {{ promo.dias || 'No disponible' }} <strong>Noches:</strong> {{ promo.noches || 'No disponible' }}</p>
+        <p><strong>Vuelo:</strong> {{ promo.vueloDirectoEscala || 'No disponible' }}</p>
+        <p><strong>Fecha Inicio:</strong> {{ promo.fechaInicio | date:'longDate' }}</p>
+        <p><strong>Fecha Fin:</strong> {{ promo.fechaFin | date:'longDate' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Descuentos -->
+  <div class="descuentos-container">
+    <h2>Descuentos</h2>
+    <div *ngFor="let descuento of descuentos" class="descuento-card">
+      <p><strong>Descripción:</strong> {{ descuento.descripcion || 'No disponible' }}</p>
+      <p><strong>Cupón:</strong> {{ descuento.cupon || 'No disponible' }}</p>
+      <p><strong>Descuento:</strong> {{ descuento.porcentajeDescuento || 'No disponible' }}%</p>
+      <p><strong>Válido hasta:</strong> {{ descuento.fechaVencimiento | date:'longDate' }}</p>
+      <p *ngIf="!descuento.activo">Cupón no disponible</p>
+    </div>
   </div>
 </div>
