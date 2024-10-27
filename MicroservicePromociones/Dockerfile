@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/MicroservicePromociones-0.0.1-SNAPSHOT.jar
 
 # Exponer el puerto en el que correrá el microservicio
-EXPOSE 8080
+EXPOSE 8081
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
