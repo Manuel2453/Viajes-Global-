@@ -369,14 +369,13 @@ DROP TABLE IF EXISTS datos_tarjeta;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE datos_tarjeta (
-  ID_Tarjeta int(11) NOT NULL AUTO_INCREMENT,
-  Nombre_Titular varchar(100) DEFAULT NULL,
   Numero_Tarjeta varchar(16) DEFAULT NULL,
+  Nombre_Titular varchar(100) DEFAULT NULL,
   CVV varchar(4) DEFAULT NULL,
   Fecha_Vencimiento date DEFAULT NULL,
   ID_Pago int(11) DEFAULT NULL,
   PRIMARY KEY (ID_Tarjeta),
-  UNIQUE KEY ID_Pago (ID_Pago)
+  UNIQUE KEY Numero_Tarjeta (Numero_Tarjeta)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -393,11 +392,11 @@ DROP TABLE IF EXISTS pago;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE pago (
-  ID_Pago int(11) NOT NULL AUTO_INCREMENT,
+  ID_Pago varchar(40) NOT NULL,
+  id_Cliente int(15) NOT NULL, 
   Fecha_Pago timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   Monto decimal(10,2) DEFAULT NULL,
   Estado enum('Completado','Pendiente','Fallido') DEFAULT NULL,
-  Metodo_Pago enum('Tarjeta de Crédito','Tarjeta de debito','Transferencia Bancaria') DEFAULT NULL,
   ID_Reserva int(11) DEFAULT NULL,
   PRIMARY KEY (ID_Pago)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
