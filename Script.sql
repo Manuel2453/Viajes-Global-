@@ -402,9 +402,33 @@ CREATE TABLE pago (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `pago`
---
+CREATE TABLE tarjeta_pago(
+ Numero_Tarjeta varchar(16) NOT NULL, 
+ Id_Pago varchar(40)  NOT NULL, 
+ primary key(Numero_Tarjeta, Id_Pago)
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO datos_tarjeta (Numero_Tarjeta, Nombre_Titular, CVV, Fecha_Vencimiento) VALUES
+('1234567812345678', 'Juan Perez', '123', '2025-08-30'),
+('8765432187654321', 'Maria Gomez', '456', '2024-12-15'),
+('5678123456781234', 'Carlos Ruiz', '789', '2026-07-19'),
+('4321876543218765', 'Ana Torres', '012', '2023-11-01'),
+('1111222233334444', 'Laura Fernandez', '345', '2027-09-23');
+
+INSERT INTO pago (ID_Pago, id_Cliente, Fecha_Pago, Monto, Estado, ID_Reserva) VALUES
+('PAG001', 1001, '2024-11-01 14:25:00', 250.00, 'Completado', 5001),
+('PAG002', 1002, '2024-11-02 15:30:00', 150.50, 'Pendiente', 5002),
+('PAG003', 1003, '2024-11-03 16:45:00', 350.75, 'Completado', 5003),
+('PAG004', 1001, '2024-11-04 12:15:00', 120.00, 'Fallido', 5004),
+('PAG005', 1004, '2024-11-05 10:05:00', 400.00, 'Completado', 5005);
+
+
+INSERT INTO tarjeta_pago (Numero_Tarjeta, Id_Pago) VALUES
+('1234567812345678', 'PAG001'),
+('8765432187654321', 'PAG002'),
+('5678123456781234', 'PAG003'),
+('4321876543218765', 'PAG004'),
+('1111222233334444', 'PAG005');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
