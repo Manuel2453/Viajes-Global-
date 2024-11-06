@@ -393,6 +393,7 @@ DROP TABLE IF EXISTS pago;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE pago (
   ID_Pago varchar(40) NOT NULL,
+  id_Cliente int(15) NOT NULL, 
   Fecha_Pago timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   Monto decimal(10,2) DEFAULT NULL,
   Estado enum('Completado','Pendiente','Fallido') DEFAULT NULL,
