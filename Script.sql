@@ -369,12 +369,12 @@ DROP TABLE IF EXISTS datos_tarjeta;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE datos_tarjeta (
-  Numero_Tarjeta varchar(16) DEFAULT NULL,
-  Nombre_Titular varchar(100) DEFAULT NULL,
-  CVV varchar(4) DEFAULT NULL,
-  Fecha_Vencimiento date DEFAULT NULL,
-  ID_Pago int(11) DEFAULT NULL,
-  PRIMARY KEY (ID_Tarjeta),
+  Numero_Tarjeta varchar(16) NOT NULL,
+  Nombre_Titular varchar(100) NOT NULL,
+  Id_Cliente int(20) NOT NULL,
+  CVV varchar(4) NOT NULL,
+  Fecha_Vencimiento varchar(5) NOT NULL,
+  PRIMARY KEY (Numero_Tarjeta),
   UNIQUE KEY Numero_Tarjeta (Numero_Tarjeta)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -408,12 +408,12 @@ CREATE TABLE tarjeta_pago(
  primary key(Numero_Tarjeta, Id_Pago)
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO datos_tarjeta (Numero_Tarjeta, Nombre_Titular, CVV, Fecha_Vencimiento) VALUES
-('1234567812345678', 'Juan Perez', '123', '2025-08-30'),
-('8765432187654321', 'Maria Gomez', '456', '2024-12-15'),
-('5678123456781234', 'Carlos Ruiz', '789', '2026-07-19'),
-('4321876543218765', 'Ana Torres', '012', '2023-11-01'),
-('1111222233334444', 'Laura Fernandez', '345', '2027-09-23');
+INSERT INTO datos_tarjeta (Numero_Tarjeta, Nombre_Titular, Id_Cliente ,CVV, Fecha_Vencimiento) VALUES
+('1234567812345678', 'Juan Perez', 1001,'123', '05/25'),
+('8765432187654321', 'Maria Gomez', 1001,'456', '05/25'),
+('5678123456781234', 'Carlos Ruiz', 1002,'789', '05/25'),
+('4321876543218765', 'Ana Torres', 1003,'012', '05/25'),
+('1111222233334444', 'Laura Fernandez',1004 ,'345', '05/25');
 
 INSERT INTO pago (ID_Pago, id_Cliente, Fecha_Pago, Monto, Estado, ID_Reserva) VALUES
 ('PAG001', 1001, '2024-11-01 14:25:00', 250.00, 'Completado', 5001),
