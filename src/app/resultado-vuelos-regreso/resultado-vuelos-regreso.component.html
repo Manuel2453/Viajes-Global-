@@ -1,0 +1,17 @@
+<!-- resultado-vuelos-regreso.component.html -->
+<div class="resultados-container">
+  <h2>Vuelos Disponibles - Regreso</h2>
+
+  <div *ngFor="let vuelo of vuelosRegreso" class="vuelo-card">
+    <p><strong>Origen:</strong> {{ vuelo.origen }}</p>
+    <p><strong>Destino:</strong> {{ vuelo.destino }}</p>
+    <p><strong>Fecha y Hora de Regreso:</strong> {{ vuelo.fechaSalida | date: 'short' }}</p>
+    <p><strong>Duración:</strong> {{ vuelo.duracion }} Minutos</p>
+    <p><strong>Aerolínea:</strong> {{ vuelo.aerolinea }}</p>
+    <p><strong>Precio:</strong> {{ vuelo.precio | currency: 'COP':'symbol':'1.3-3' }}</p>
+
+    <div class="button-group">
+      <button class="button select" (click)="seleccionarVueloRegreso(vuelo)">Seleccionar</button>
+    </div>
+  </div>
+</div>

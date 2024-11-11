@@ -1,69 +1,63 @@
 <div class="content">
-  <h1>✈️ Vuelos</h1> <!-- Agregado emoji de avión -->
-  <div class="options">
+    <h1>✈️ Búsqueda de Vuelos</h1>
+    <div class="options">
       <div class="option-group">
-          <label for="tipo-vuelo">Tipo de vuelo: 🌍</label> <!-- Emoji de globo terráqueo -->
-          <select id="tipo-vuelo" class="tipo-vuelo" (change)="onTipoVueloChange($event)">
-              <option value="ida-vuelta" selected>Ida y vuelta</option>
-              <option value="solo-ida">Solo ida</option>
-          </select>
+        <label for="tipo-vuelo">Tipo de vuelo: 🌍</label>
+        <select id="tipo-vuelo" name="tipoVuelo" [(ngModel)]="tipoVuelo" (change)="onTipoVueloChange()">
+          <option value="ida-vuelta">Ida y vuelta</option>
+          <option value="solo-ida">Solo ida</option>
+        </select>
       </div>
       <div class="passenger-selector">
-          <label for="personas">Personas: 👨‍👩‍👧‍👦</label> <!-- Emoji de familia -->
-          <select id="personas">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-          </select>
+        <label for="personas">Personas: 👨‍👩‍👧‍👦</label>
+        <select id="personas" name="personas" [(ngModel)]="personas">
+          <option *ngFor="let num of [1,2,3,4,5,6]" [value]="num">{{ num }}</option>
+        </select>
       </div>
       <div class="class-selector">
-          <label for="clase">Clase: 🛋️</label> <!-- Emoji de sofá -->
-          <select id="clase">
-              <option value="turista">Turista</option>
-              <option value="business">Business</option>
-          </select>
+        <label for="clase">Clase: 🛋️</label>
+        <select id="clase" name="clase" [(ngModel)]="clase">
+          <option value="turista">Turista</option>
+          <option value="business">Business</option>
+        </select>
       </div>
-  </div>
-
-  <form>
-      <!-- Origen -->
+    </div>
+  
+    <form (ngSubmit)="buscarVuelos()">
       <div class="form-group">
-          <label for="origen">Origen: 📍</label> <!-- Emoji de ubicación -->
-          <select id="origen" (change)="filterAeropuertos($event, false)">
-              <option value="">Selecciona un aeropuerto</option>
-              <option *ngFor="let aeropuerto of filteredAeropuertosOrigen" [value]="aeropuerto">
-                  {{ aeropuerto }}
-              </option>
-          </select>
+        <label for="origen">Origen: 📍</label>
+        <select id="origen" name="origen" [(ngModel)]="origen">
+          <option value="">Selecciona un aeropuerto</option>
+          <option *ngFor="let aeropuerto of filteredAeropuertosOrigen" [value]="aeropuerto">
+            {{ aeropuerto }}
+          </option>
+        </select>
       </div>
-
-      <!-- Destino -->
+  
       <div class="form-group">
-          <label for="destino">Destino: 🎯</label> <!-- Emoji de diana -->
-          <select id="destino" (change)="filterAeropuertos($event, true)">
-              <option value="">Selecciona un aeropuerto</option>
-              <option *ngFor="let aeropuerto of filteredAeropuertosDestino" [value]="aeropuerto">
-                  {{ aeropuerto }}
-              </option>
-          </select>
+        <label for="destino">Destino: 🎯</label>
+        <select id="destino" name="destino" [(ngModel)]="destino">
+          <option value="">Selecciona un aeropuerto</option>
+          <option *ngFor="let aeropuerto of filteredAeropuertosDestino" [value]="aeropuerto">
+            {{ aeropuerto }}
+          </option>
+        </select>
       </div>
-
+  
       <div class="form-group">
-          <div class="form-item">
-              <label for="fecha-salida">Salida: 📅</label> <!-- Emoji de calendario -->
-              <input type="date" id="fecha-salida">
-          </div>
-          <div class="form-item" *ngIf="mostrarFechaVuelta">
-              <label for="fecha-vuelta">Vuelta: 🔙</label> <!-- Emoji de regreso -->
-              <input type="date" id="fecha-vuelta">
-          </div>
+        <div class="form-item">
+          <label for="fecha-salida">Salida: 📅</label>
+          <input type="date" id="fecha-salida" name="fechaSalida" [(ngModel)]="fechaSalida" required />
+        </div>
+        <div class="form-item" *ngIf="mostrarFechaVuelta">
+          <label for="fecha-vuelta">Vuelta: 🔙</label>
+          <input type="date" id="fecha-vuelta" name="fechaVuelta" [(ngModel)]="fechaVuelta" />
+        </div>
       </div>
-
+  
       <div class="button-group">
-          <button type="submit" class="pill">🔍 Explorar</button> <!-- Agregado emoji de lupa -->
+        <button type="submit" class="pill">🔍 Buscar Vuelos</button>
       </div>
-  </form>
-</div>
+    </form>
+  </div>
+  

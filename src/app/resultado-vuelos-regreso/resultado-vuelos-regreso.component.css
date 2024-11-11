@@ -1,0 +1,92 @@
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Contenedor principal de los resultados de vuelos de regreso */
+.resultados-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Encabezado de la sección */
+.resultados-container h2 {
+    font-size: 2rem;
+    color: var(--french-violet);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Tarjeta individual de vuelo de regreso */
+.vuelo-card {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(198, 218, 252, 0.8), rgba(235, 218, 252, 0.8));
+    color: #000;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Efecto hover en las tarjetas */
+.vuelo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Título de cada tarjeta */
+.vuelo-card h3 {
+    font-size: 1.5rem;
+    color: var(--electric-violet);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Detalles del vuelo */
+.vuelo-card p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Botones de acción */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+/* Estilo específico del botón de seleccionar */
+.select {
+    background-color: var(--french-violet);
+}
+
+.select:hover {
+    background-color: var(--electric-violet);
+}

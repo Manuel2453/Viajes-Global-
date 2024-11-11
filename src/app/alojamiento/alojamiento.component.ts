@@ -1,44 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-alojamientos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule ],
   templateUrl: './alojamiento.component.html',
   styleUrls: ['./alojamiento.component.css']
 })
-export class AlojamientosComponent {
+export class AlojamientosComponent implements OnInit {
   selectedCiudad: string = '';
-  ciudades: string[] = [
-    "Bogotá", "Medellín", "Cali", "Cartagena", "Santa Marta",
-    "Barranquilla", "Bucaramanga", "Pereira", "Manizales", "Armenia",
-    "Tuluá", "Montería", "Quibdó", "Apía", "Pasto", "Valledupar",
-    "Cúcuta", "Sincelejo", "Barrancabermeja", "San Andrés", "Arauca",
-    "Puerto Asís", "Leticia", "Villavicencio", "Ipiales", "Tumaco",
-    "Yopal", "Puerto Carreño", "San Vicente", "Tame", "Bello",
-    "Soledad", "Palmira", "Cúcuta", "Riohacha", "Caldas", 
-    "Zipaquirá", "Tunja", "Bucaramanga", "Sogamoso", "Neiva",
-    "Cali", "Cartago", "Samaná", "Santiago de Cali", "Carmen de Viboral"
-  ];
+  ciudades: string[] = [];
+  filteredCiudades: string[] = [];
+  fechaEntrada: string = '';
+  fechaSalida: string = '';
+  habitaciones: number = 1;
+  personas: number = 1;
 
-  filteredCiudades: string[] = this.ciudades; // Inicialmente muestra todas las ciudades
-  showDropdown: boolean = false; // Controla la visibilidad del dropdown
+  constructor(private http: HttpClient, private router: Router) {}
+
+  ngOnInit(): void {
+    this.obtenerCiudadesDisponibles();
+  }
+
+  obtenerCiudadesDisponibles() {
+    this.http.get<string[]>('http://localhost:8083/api/alojamientos/ciudades-disponibles').subscribe(
+      (data) => {
+        this.ciudades = data;
+        this.filteredCiudades = data;
+      },
+      (error) => console.error('Error al cargar ciudades:', error)
+    );
+  }
+
+  buscarAlojamientos() {
+    const params = new HttpParams()
+      .set('ciudad', this.selectedCiudad)
+      .set('fechaEntrada', this.fechaEntrada)
+      .set('fechaSalida', this.fechaSalida)
+      .set('habitaciones', this.habitaciones.toString())
+      .set('personas', this.personas.toString());
+
+    this.http.get<any[]>('http://localhost:8083/api/alojamientos', { params }).subscribe(
+      (alojamientos) => {
+        // Redirige al componente de resultados con el estado necesario
+        this.router.navigate(['/alojamiento-resultados'], { 
+          state: { alojamientos, ciudad: this.selectedCiudad, fechaEntrada: this.fechaEntrada, fechaSalida: this.fechaSalida }
+        });
+      },
+      (error) => console.error('Error al buscar alojamientos:', error)
+    );
+  }
 
   // Método para filtrar ciudades según el término de búsqueda
-filterCiudades(event: Event, isCiudad: boolean) {
-  const inputElement = event.target as HTMLInputElement; // Aserción de tipo para un input
-  const searchTerm = inputElement.value.toLowerCase(); // Convertir a minúsculas para búsqueda insensible a mayúsculas
-
-  if (isCiudad) {
-    // Filtrar la lista de ciudades solo si se está buscando una ciudad
+  filterCiudades(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const searchTerm = inputElement.value.toLowerCase();
     this.filteredCiudades = this.ciudades.filter(ciudad =>
       ciudad.toLowerCase().includes(searchTerm)
     );
   }
-
-  // Mostrar el dropdown solo si hay ciudades filtradas
-  this.showDropdown = isCiudad && this.filteredCiudades.length > 0;
-}
 }
