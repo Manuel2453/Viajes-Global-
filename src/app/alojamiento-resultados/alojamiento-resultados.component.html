@@ -1,26 +1,36 @@
 <div class="alojamiento-container">
-  <div class="header">
   <h2>Alojamientos Disponibles</h2>
-  </div>
   <div *ngIf="alojamientos.length > 0; else noAlojamientos">
     <div *ngFor="let alojamiento of alojamientos" class="alojamiento-card">
       <!-- Título del alojamiento -->
       <h3>{{ alojamiento.nombreHotel }}</h3>
 
-      <!-- Ubicación y precio -->
-      <p>Ubicación: {{ alojamiento.ciudad }}
-      Dirección: {{ alojamiento.direccion }}</p>
-      <P>Descripcion:  {{ alojamiento.descripcion }} </P>
-      <p>Precio por noche: {{ alojamiento.precioNoche | currency }}</p>
-      <p>Precio total para {{ noches }} noches: {{ (alojamiento.precioNoche * noches) | currency }}</p>
-      <p>Estrellas: {{ alojamiento.estrellas }}</p>
+      <!-- Ubicación -->
+      <p>
+        <span class="label">Ubicación:</span> {{ alojamiento.ciudad }} <br><br>
+        <span class="label">Dirección:</span> {{ alojamiento.direccion }}
+      </p>
 
-      <!-- Deslizador de imágenes -->
-      <div class="image-slider" *ngIf="alojamiento.fotos.length > 0">
-        <button (click)="anteriorImagen(alojamiento)" class="slider-button">❮</button>
-        <img [src]="alojamiento.fotos[alojamiento.imagenActual]" alt="Foto de {{ alojamiento.nombreHotel }}" width="200" height="150">
-        <button (click)="siguienteImagen(alojamiento)" class="slider-button">❯</button>
-      </div>
+      <!-- Descripción -->
+      <p>
+        <span class="label">Descripción:</span> <br> {{ alojamiento.descripcion }}
+      </p>
+
+      <!-- Precio por noche y precio total -->
+      <p>
+        <span class="label">Precio por noche:</span> {{ alojamiento.precioNoche | currency: 'USD':true:'1.0-0' }} <br><br>
+        <span class="label">Precio total para {{ noches }} noches:</span> {{ (alojamiento.precioNoche * noches) | currency: 'USD':true:'1.0-0' }}
+      </p>
+      
+
+      <!-- Estrellas -->
+      <p>
+        <span class="label">Estrellas:</span> {{ alojamiento.estrellas }} <br><br>
+        <!-- Capacidad máxima -->
+        <span class="label">Capacidad máxima:</span> {{ alojamiento.cantidadPersonasMax }} personas
+      <ng-container *ngFor="let habitacion of alojamiento.habitaciones">
+      </ng-container>
+      </p>
 
       <!-- Servicios -->
       <div *ngIf="alojamiento.servicios.length > 0" class="servicios">
@@ -30,12 +40,14 @@
         </ul>
       </div>
 
-      <!-- Información de capacidad máxima -->
-      <p>Capacidad máxima: {{ alojamiento.cantidadPersonasMax }} personas</p>
+      
 
-          <ng-container *ngFor="let habitacion of alojamiento.habitaciones">
-           
-          </ng-container>
+      <!-- Deslizador de imágenes -->
+      <div class="image-slider" *ngIf="alojamiento.fotos.length > 0">
+        <button (click)="anteriorImagen(alojamiento)" class="slider-button">❮</button>
+        <img [src]="alojamiento.fotos[alojamiento.imagenActual]" alt="Foto de {{ alojamiento.nombreHotel }}" width="200" height="150">
+        <button (click)="siguienteImagen(alojamiento)" class="slider-button">❯</button>
+      </div>
 
       <!-- Botón para agregar al carrito -->
       <div class="button-group">

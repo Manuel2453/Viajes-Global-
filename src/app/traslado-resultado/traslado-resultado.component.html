@@ -1,0 +1,40 @@
+<div class="traslado-container">
+  <h2>🚖 Traslados Disponibles</h2>
+  <div *ngIf="traslados.length > 0; else noTraslados">
+    <div *ngFor="let traslado of traslados" class="traslado-card">
+      <!-- Título del traslado -->
+      <h3>{{ traslado.tipoTransporte }}</h3>
+
+      <!-- Ciudad y Capacidad máxima -->
+      <p>
+        <span class="label">Ciudad:</span> {{ traslado.ciudad }}<br>
+        <span class="label">Capacidad máxima:</span> {{ traslado.maximoPersonas }} personas
+      </p>
+
+      <!-- Descripción y Descripción del servicio -->
+      <p>
+        <span class="label">Descripción:</span> {{ traslado.descripcion }}<br>
+        <span class="label">Descripción del servicio:</span> {{ traslado.descripcionServicio }}
+      </p>
+
+      <!-- Precio -->
+      <p>
+        <span class="label">Precio:</span> {{ traslado.precio | currency: 'COP':'symbol':'1.3-3' }}
+      </p>
+
+      <!-- Imagen del traslado -->
+      <div class="traslado-imagen">
+        <img [src]="traslado.imagenUrl" alt="Imagen de {{ traslado.tipoTransporte }}" width="200" height="150">
+      </div>
+
+      <!-- Botón para agregar al carrito -->
+      <div class="button-group">
+        <button class="button add-cart" (click)="agregarAlCarrito(traslado)">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noTraslados>
+    <p>No hay traslados disponibles para los parámetros seleccionados.</p>
+  </ng-template>
+</div>
