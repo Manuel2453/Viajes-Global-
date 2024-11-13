@@ -1,0 +1,33 @@
+ <div class="actividad-container">
+  <h2>Actividades Disponibles</h2>
+
+  <div *ngIf="actividades && actividades.length > 0; else noResults">
+    <div *ngFor="let actividad of actividades" class="actividad-card">
+      <h3>{{ actividad.titulo }}</h3>
+
+
+      <p>
+        <span class="label">Descripción:</span> {{ actividad.descripcion }}
+      </p>
+      <p>
+        <span class="label">Ciudad:</span> {{ actividad.destino }}
+      </p>
+      <p>
+        <span class="label"> Precio:</span> {{ actividad.precio | currency: 'COP':'symbol':'1.3-3' }}
+        <span class="label"> Duración:</span>{{ actividad.duracionHoras }} horas
+    </p>
+      <div class="actividad-imagen">
+      <img *ngIf="actividad.urlImagen" [src]="actividad.urlImagen" alt="{{ actividad.titulo }}" />
+    </div>
+      <!-- Botón para agregar al carrito -->
+      <div class="button-group">
+      <button class="button add-cart" (click)="agregarAlCarrito(actividades)">Agregar al carrito</button>
+    </div>
+</div>  
+    </div>
+  </div>
+
+  
+  <ng-template #noResults>
+    <p>No hay actividades disponibles para los criterios seleccionados.</p>
+  </ng-template>

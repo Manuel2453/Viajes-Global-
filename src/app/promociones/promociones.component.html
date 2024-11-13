@@ -3,7 +3,7 @@
     <div *ngFor="let promo of promociones" class="promocion-card">
       <p>Origen: {{ promo.origen }}</p>
       <p>Destino: {{ promo.destino }}</p>
-      <p>Precio: {{ promo.precio | currency: 'COP' }}</p>
+      <p>Precio: {{ promo.precio |currency: 'COP':'symbol':'1.3-3' }}</p>
       <p>Días: {{ promo.dias }}</p>
       <p>Noches: {{ promo.noches }}</p>
       <p>Vuelo: {{ promo.vuelo_Directo_Escala }}</p>

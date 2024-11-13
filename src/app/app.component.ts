@@ -31,7 +31,7 @@ export class AppComponent {
     // Escuchar cambios de ruta para ocultar/mostrar la sección principal
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showMainContent = !(event.url === '/registrar' ||event.url === '/resultado-vuelos' ||event.url === '/traslado-resultado' ||event.url === '/alojamiento-resultados' || event.url === '/resultado-vuelos-regreso'|| event.url === '/login'  || event.url === '/resultados-vuelos' || event.url === '/promociones'  || event.url === '/dashboard' || event.url === '/vuelos' || event.url === '/alojamiento' || event.url === '/traslados'  );
+        this.showMainContent = !(event.url === '/registrar' || event.url === '/actividades' || event.url === '/actividades-resultado' || event.url === '/resultado-vuelos' ||event.url === '/traslado-resultado' ||event.url === '/alojamiento-resultados' || event.url === '/resultado-vuelos-regreso'|| event.url === '/login'  || event.url === '/resultados-vuelos' || event.url === '/promociones'  || event.url === '/dashboard' || event.url === '/vuelos' || event.url === '/alojamiento' || event.url === '/traslados'  );
       }
     });
   }

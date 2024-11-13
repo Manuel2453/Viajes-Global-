@@ -11,6 +11,8 @@ import { TrasladosComponent } from './traslado/traslado.component';
 import { PromocionesComponent } from './promociones/promociones.component'; // Importa el componente
 import { AlojamientoResultadosComponent } from './alojamiento-resultados/alojamiento-resultados.component';
 import { TrasladosResultadosComponent } from './traslado-resultado/traslado-resultado.component';
+import { ActividadesComponent } from './actividad/actividad.component';
+import { ActividadesResultadoComponent } from './actividad-resultado/actividad-resultado.component';
 
 export const routes: Routes = [
   { path: 'registrar', component: RegisterComponent },  // Ruta para registro
@@ -19,13 +21,14 @@ export const routes: Routes = [
   { path: 'resultados-vuelos', component: ResultadosVuelosComponent },
   { path: 'alojamiento', component: AlojamientosComponent },
   { path: 'alojamiento-resultados', component: AlojamientoResultadosComponent },
-//  { path: 'actividades', component: ActividadesComponent },
+ { path: 'actividades', component: ActividadesComponent},
   { path: 'traslados', component: TrasladosComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'promociones', component: PromocionesComponent }, // Ruta para promociones
   { path: 'resultado-vuelos', component: ResultadosVuelosComponent },
   { path: 'resultado-vuelos-regreso', component: ResultadoVuelosRegresoComponent },
   { path: 'traslado-resultado', component: TrasladosResultadosComponent },
+  {path: 'actividades-resultado', component: ActividadesResultadoComponent}
 
 ];
 
