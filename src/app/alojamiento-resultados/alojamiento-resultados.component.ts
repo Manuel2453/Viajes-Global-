@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   standalone: true,
@@ -15,7 +17,7 @@ export class AlojamientoResultadosComponent implements OnInit {
   personas: number = 1;
   ciudad: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,  private router: Router) {}
 
   ngOnInit(): void {
     const state = history.state;
@@ -60,4 +62,8 @@ export class AlojamientoResultadosComponent implements OnInit {
     console.log('Alojamiento agregado al carrito:', alojamiento);
     alert(`Alojamiento "${alojamiento.nombreHotel}" agregado al carrito.`);
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }

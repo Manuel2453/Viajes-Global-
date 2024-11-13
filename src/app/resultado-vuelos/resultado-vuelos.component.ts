@@ -42,4 +42,8 @@ export class ResultadosVuelosComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }

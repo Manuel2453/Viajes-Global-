@@ -65,4 +65,8 @@ export class AlojamientosComponent implements OnInit {
       ciudad.toLowerCase().includes(searchTerm)
     );
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }

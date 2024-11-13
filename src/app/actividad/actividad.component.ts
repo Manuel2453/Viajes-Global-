@@ -62,5 +62,9 @@ export class ActividadesComponent implements OnInit {
       ciudad.toLowerCase().includes(filterValue)
     );
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+}
 }
 

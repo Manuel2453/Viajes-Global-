@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ export class ActividadesResultadoComponent implements OnInit {
   ciudad: string = '';
   fecha: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     const state = history.state;
@@ -27,4 +28,8 @@ export class ActividadesResultadoComponent implements OnInit {
     console.log('Actividad agregada al carrito:', actividad);
     alert(`Actividad "${actividad.titulo}" agregada al carrito.`);
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+}
 }

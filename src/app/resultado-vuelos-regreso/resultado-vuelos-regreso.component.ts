@@ -32,4 +32,8 @@ export class ResultadoVuelosRegresoComponent implements OnInit {
     console.log("Vuelo de ida seleccionado:", this.vueloIda);
     console.log("Vuelos de regreso disponibles:", this.vuelosRegreso);
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }

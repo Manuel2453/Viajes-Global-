@@ -72,4 +72,8 @@ export class TrasladosComponent implements OnInit {
       (error) => console.error('Error al buscar traslados disponibles:', error)
     );
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }

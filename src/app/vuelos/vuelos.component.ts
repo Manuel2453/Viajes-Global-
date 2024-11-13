@@ -100,4 +100,8 @@ export class VuelosComponent implements OnInit {
       error => console.error('Error al buscar vuelos:', error)
     );    
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
+}
 }
