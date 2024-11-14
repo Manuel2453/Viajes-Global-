@@ -6,23 +6,21 @@
       <button (click)="navigateToAlojamientos()">🏨 Alojamientos</button>
       <button (click)="navigateToActividades()">🎉 Actividades</button>
       <button (click)="navigateToTraslados()">🚗 Traslados</button>
+      <button (click)="navigateToCarrito()">🛒 Carrito</button> <!-- Nuevo botón de Carrito -->
     </div>
   </div>
-<br>
-<br>
-<br>
+  
+  <br><br><br>
 
   <div class="welcome-message">
     <h1>Bienvenido, {{ usuarioNombre }}!</h1>
   </div>
 
   <!-- Contenedor de Promociones -->
-   <!-- Contenedor de Promociones -->
-   <div class="promociones-container">
+  <div class="promociones-container">
     <h2>Promociones</h2>
     <div *ngFor="let promo of promociones" class="promocion-card">
       <img [src]="promo.imagen_url || 'assets/default-image.jpg'" alt="Imagen de {{ promo.destino }}">
-
       <div class="promo-info">
         <p><strong>Origen:</strong> {{ promo.origen || 'No disponible' }} <strong>Destino:</strong> {{ promo.destino || 'No disponible' }}</p>
         <p><strong>Precio:</strong> {{ promo.precio | currency:'COP' }}</p>

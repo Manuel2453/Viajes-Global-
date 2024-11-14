@@ -104,4 +104,9 @@ export class VuelosComponent implements OnInit {
   goToDashboard() {
     this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
 }
+
+navigateToCarrito() {
+  const userId = 1; // Reemplazar con la lógica para obtener el ID real del usuario
+  this.router.navigate([`/carrito/${userId}`]);
+}
 }

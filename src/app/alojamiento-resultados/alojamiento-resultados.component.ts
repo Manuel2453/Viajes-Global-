@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   selector: 'app-alojamiento-resultados',
   templateUrl: './alojamiento-resultados.component.html',
   styleUrls: ['./alojamiento-resultados.component.css']
@@ -17,7 +16,7 @@ export class AlojamientoResultadosComponent implements OnInit {
   personas: number = 1;
   ciudad: string = '';
 
-  constructor(private route: ActivatedRoute,  private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     const state = history.state;
@@ -25,15 +24,6 @@ export class AlojamientoResultadosComponent implements OnInit {
     this.ciudad = state.ciudad || '';
     this.noches = this.calcularNoches(state.fechaEntrada, state.fechaSalida);
     this.personas = state.personas || 1;
-
-    // Inicializar índice de imagen actual en cada alojamiento
-    this.alojamientos.forEach(alojamiento => {
-      alojamiento.imagenActual = 0;
-      // Asegurarse de que 'fotos', 'servicios', y 'habitaciones' estén definidos
-      alojamiento.fotos = alojamiento.fotos || [];
-      alojamiento.servicios = alojamiento.servicios || [];
-      alojamiento.habitaciones = alojamiento.habitaciones || [];
-    });
   }
 
   calcularNoches(fechaEntrada: string, fechaSalida: string): number {
@@ -59,11 +49,39 @@ export class AlojamientoResultadosComponent implements OnInit {
   }
 
   agregarAlCarrito(alojamiento: any): void {
-    console.log('Alojamiento agregado al carrito:', alojamiento);
-    alert(`Alojamiento "${alojamiento.nombreHotel}" agregado al carrito.`);
+    const item = {
+      tipoItem: 'Alojamiento',
+      idReferencia: alojamiento.id,
+      nombreHotel: alojamiento.nombreHotel,
+      precio: alojamiento.precioNoche * this.noches,
+      cantidad: this.noches
+    };
+
+    const idUsuario = this.getUsuarioId();
+    this.http.post(`/api/carrito/${idUsuario}/agregar`, item, { headers: { 'Content-Type': 'application/json' } })
+      .subscribe({
+        next: (response) => {
+          console.log('Alojamiento agregado al carrito', response);
+          alert(`Alojamiento "${alojamiento.nombreHotel}" agregado al carrito.`);
+          this.router.navigate([`/carrito/${idUsuario}`]);
+        },
+        error: (error) => {
+          console.error('Error al agregar el alojamiento al carrito:', error);
+        }
+      });
+  }
+
+  getUsuarioId(): number {
+    return history.state.idUsuario || 1;
   }
 
   goToDashboard() {
-    this.router.navigate(['/dashboard']); // Asegúrate de que '/dashboard' sea la ruta correcta
-}
+    this.router.navigate(['/dashboard']);
+  }
+
+  navigateToCarrito() {
+    const userId = 1; // Reemplazar con la lógica para obtener el ID real del usuario
+    this.router.navigate([`/carrito/${userId}`]);
+  }
+
 }

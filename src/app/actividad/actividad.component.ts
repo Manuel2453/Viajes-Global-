@@ -66,5 +66,9 @@ export class ActividadesComponent implements OnInit {
   goToDashboard() {
     this.router.navigate(['/dashboard']);
 }
+navigateToCarrito() {
+  const userId = 1; // Reemplazar con la lógica para obtener el ID real del usuario
+  this.router.navigate([`/carrito/${userId}`]);
+}
 }
 

@@ -69,4 +69,10 @@ export class DashboardComponent implements OnInit {
   navigateToTraslados() {
     this.router.navigate(['/traslados']);
   }
+
+  // Navegación al carrito del usuario
+  navigateToCarrito() {
+    const userId = 1; // Reemplazar con la lógica para obtener el ID real del usuario
+    this.router.navigate([`/carrito/${userId}`]);
+  }
 }

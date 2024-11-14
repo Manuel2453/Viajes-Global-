@@ -26,12 +26,30 @@ export class AppComponent {
   preferenciasNotificacion: string = ''; // Cambia esto según sea necesario
   usuarioService: any;
 
-
   constructor(private router: Router) {
+    // Expresión regular para identificar rutas que incluyen `/carrito/` seguido de un ID numérico
+    const carritoRegex = /^\/carrito\/\d+$/;
+
     // Escuchar cambios de ruta para ocultar/mostrar la sección principal
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showMainContent = !(event.url === '/registrar' || event.url === '/actividades' || event.url === '/actividades-resultado' || event.url === '/resultado-vuelos' ||event.url === '/traslado-resultado' ||event.url === '/alojamiento-resultados' || event.url === '/resultado-vuelos-regreso'|| event.url === '/login'  || event.url === '/resultados-vuelos' || event.url === '/promociones'  || event.url === '/dashboard' || event.url === '/vuelos' || event.url === '/alojamiento' || event.url === '/traslados'  );
+        this.showMainContent = !(
+          carritoRegex.test(event.url) || // Comprueba si la URL coincide con la expresión regular para el carrito
+          event.url === '/registrar' ||
+          event.url === '/actividades' ||
+          event.url === '/actividades-resultado' ||
+          event.url === '/resultado-vuelos' ||
+          event.url === '/traslado-resultado' ||
+          event.url === '/alojamiento-resultados' ||
+          event.url === '/resultado-vuelos-regreso' ||
+          event.url === '/login' ||
+          event.url === '/resultados-vuelos' ||
+          event.url === '/promociones' ||
+          event.url === '/dashboard' ||
+          event.url === '/vuelos' ||
+          event.url === '/alojamiento' ||
+          event.url === '/traslados'
+        );
       }
     });
   }
@@ -43,21 +61,21 @@ export class AppComponent {
   }
 
   // Función que redirige al formulario de inicio de sesión
-navigateToLogin() {
-  console.log('Navegando a la página de inicio de sesión');
-  this.router.navigate(['/login']); // Navega a la ruta '/login'
-}
+  navigateToLogin() {
+    console.log('Navegando a la página de inicio de sesión');
+    this.router.navigate(['/login']); // Navega a la ruta '/login'
+  }
 
-registrarUsuario() {
-  // Definir los parámetros a enviar
-  const params = new HttpParams()
-    .set('nombre', this.nombre)
-    .set('telefono', this.telefono)
-    .set('correoElectronico', this.correoElectronico)
-    .set('usuario', this.usuario)
-    .set('contrasena', this.contrasena)
-    .set('preferenciasNotificacion', this.preferenciasNotificacion);
-    
+  registrarUsuario() {
+    // Definir los parámetros a enviar
+    const params = new HttpParams()
+      .set('nombre', this.nombre)
+      .set('telefono', this.telefono)
+      .set('correoElectronico', this.correoElectronico)
+      .set('usuario', this.usuario)
+      .set('contrasena', this.contrasena)
+      .set('preferenciasNotificacion', this.preferenciasNotificacion);
+      
     // Enviar la solicitud POST con los parámetros
     this.usuarioService.crearUsuario(params).subscribe(
       (response: any) => {

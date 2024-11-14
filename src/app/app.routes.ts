@@ -13,6 +13,7 @@ import { AlojamientoResultadosComponent } from './alojamiento-resultados/alojami
 import { TrasladosResultadosComponent } from './traslado-resultado/traslado-resultado.component';
 import { ActividadesComponent } from './actividad/actividad.component';
 import { ActividadesResultadoComponent } from './actividad-resultado/actividad-resultado.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 export const routes: Routes = [
   { path: 'registrar', component: RegisterComponent },  // Ruta para registro
@@ -28,7 +29,8 @@ export const routes: Routes = [
   { path: 'resultado-vuelos', component: ResultadosVuelosComponent },
   { path: 'resultado-vuelos-regreso', component: ResultadoVuelosRegresoComponent },
   { path: 'traslado-resultado', component: TrasladosResultadosComponent },
-  {path: 'actividades-resultado', component: ActividadesResultadoComponent}
+  {path: 'actividades-resultado', component: ActividadesResultadoComponent},
+  { path: 'carrito/:idUsuario', component: CarritoComponent }
 
 ];
 
