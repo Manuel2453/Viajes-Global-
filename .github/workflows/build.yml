@@ -1,5 +1,4 @@
-name: CI Pipeline for Microservices
-
+name: SonarQube Cloud
 
 on:
   push:
@@ -7,30 +6,123 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-    
+
 jobs:
   build:
+    name: Build and analyze
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - MicroserviceUsuarios
+          - MicroserviceReservas
+          - MicroservicePromociones
+          - MicroserviceCarritoCompras
+          - MicroservicePagos
+          
+    services:
+      mysql_usuarios:
+        image: mysql:8
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: Usuarios_ViajesGlobal
+        options: --health-cmd="mysqladmin ping --silent" --health-timeout=5m --health-start-period=5s
+        
+      mysql_pagos:
+        image: mysql:8
+        ports:
+          - 3307:3306
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: pagos_ViajesGlobal
+        options: --health-cmd="mysqladmin ping --silent" --health-timeout=5m --health-start-period=5s
+        
+      mysql_promociones:
+        image: mysql:8
+        ports:
+          - 3308:3306
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: promociones_ViajesGlobal
+        options: --health-cmd="mysqladmin ping --silent" --health-timeout=5m --health-start-period=5s
+        
+      mysql_carrito:
+        image: mysql:8
+        ports:
+          - 3309:3306
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: Carrito_ViajesGlobal
+        options: --health-cmd="mysqladmin ping --silent" --health-timeout=5m --health-start-period=5s
+        
+      mysql_reservas:
+        image: mysql:8
+        ports:
+          - 3310:3306
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: reservas_ViajesGlobal
+        options: --health-cmd="mysqladmin ping --silent" --health-timeout=5m --health-start-period=5s
 
     steps:
-    # Paso 1: Checkout del código
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    # Paso 2: Configurar JDK 21
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        java-version: '21'
-        distribution: 'zulu'
-
-    - name: Ejecución
-      run: |
-        echo "Prueba MVN"
-        sleep 45  
-        echo "No hay errores"
-
-    # Paso 5: Indicar que todo ha ido bien
-    - name: Finish CI Pipeline
-      run: |
-        echo "Cambios Realizados!"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          
+      - name: List files
+        run: ls -R
+        
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: 'zulu'
+          
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+          
+      # Build and install for each microservice
+      - name: Build and install MicroserviceUsuarios
+        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        run: mvn clean install
+        
+      - name: Build and install MicroservicePromociones
+        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        run: mvn clean install
+        
+      - name: Build and install MicroservicePagos
+        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        run: mvn clean install
+        
+      - name: Build and install MicroserviceCarritoCompras
+        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        run: mvn clean verify
+        
+      # Run SonarQube analysis
+      - name: Build and analyze with SonarQube
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          DB_USUARIOS_URL: jdbc:mysql://localhost:3306/Usuarios_ViajesGlobal
+          DB_PAGOS_URL: jdbc:mysql://localhost:3307/pagos_ViajesGlobal
+          DB_PROMOCIONES_URL: jdbc:mysql://localhost:3308/promociones_ViajesGlobal
+          DB_CARRITO_URL: jdbc:mysql://localhost:3309/Carrito_ViajesGlobal
+          DB_RESERVAS_URL: jdbc:mysql://localhost:3310/reservas_ViajesGlobal
+          DB_USER: root
+          DB_PASSWORD: changeme
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Manuel2453_Viajes-Global-
+          -Dsonar.projectKey=manuel2453_${{ matrix.service }}
