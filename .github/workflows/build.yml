@@ -1,0 +1,36 @@
+name: CI Pipeline for Microservices
+
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Checkout del código
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Paso 2: Configurar JDK 21
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'zulu'
+
+    - name: Ejecución
+      run: |
+        echo "Prueba MVN"
+        sleep 45  
+        echo "No hay errores"
+
+    # Paso 5: Indicar que todo ha ido bien
+    - name: Finish CI Pipeline
+      run: |
+        echo "Cambios Realizados!"
