@@ -1,9 +1,0 @@
-co\viajesglobal\MicroserviceUsuarios\Controller\UsuarioController.class
-co\viajesglobal\MicroserviceUsuarios\Service\UsuarioService.class
-co\viajesglobal\MicroserviceUsuarios\MicroserviceUsuariosApplication.class
-co\viajesglobal\MicroserviceUsuarios\Repository\UsuarioRepository.class
-co\viajesglobal\MicroserviceUsuarios\DTO\LoginRequest.class
-co\viajesglobal\MicroserviceUsuarios\Entity\Usuario.class
-co\viajesglobal\MicroserviceUsuarios\DTO\UsuarioDTO.class
-co\viajesglobal\MicroserviceUsuarios\Entity\NotificacionTipo.class
-co\viajesglobal\MicroserviceUsuarios\ConexionDB.class
