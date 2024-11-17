@@ -48,5 +48,5 @@ jobs:
         
       # Run static analysis
       - name: Run Static Analysis
-        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
         run: mvn checkstyle:check pmd:check spotbugs:check
