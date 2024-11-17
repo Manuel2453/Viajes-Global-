@@ -43,7 +43,7 @@ jobs:
           
       # Build and install for each microservice
       - name: Build and install Microservice
-        working-directory: ./Viajes-Global--Develop/${{ matrix.service }}
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
         run: mvn clean install
         
       # Run static analysis
