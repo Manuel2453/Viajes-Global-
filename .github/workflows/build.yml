@@ -1,4 +1,4 @@
-name: Complete Project Test
+name: Complete Microservices Test
 
 on:
   push:
@@ -8,9 +8,17 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  complete-test:
-    name: Complete Project Test
+  test-microservices:
+    name: Test Microservices
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - MicroserviceUsuarios
+          - MicroserviceReservas
+          - MicroservicePromociones
+          - MicroserviceCarritoCompras
+          - MicroservicePagos
 
     steps:
       # 1. Checkout the repository
@@ -38,25 +46,23 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      # 5. Build the entire project
-      - name: Build the project
-        run: mvn clean install
+      # 5. Build, test, and analyze each microservice
+      - name: Build and Test ${{ matrix.service }}
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
+        run: |
+          mvn clean install
+          mvn test
+          mvn verify
 
-      # 6. Run unit tests
-      - name: Run Unit Tests
-        run: mvn test
-
-      # 7. Run integration tests (if any)
-      - name: Run Integration Tests
-        run: mvn verify
-
-      # 8. Run static analysis
-      - name: Run Static Analysis (Checkstyle, PMD, SpotBugs)
+      # 6. Run static analysis for each microservice
+      - name: Static Analysis for ${{ matrix.service }}
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
         run: |
           mvn checkstyle:check
           mvn pmd:check
           mvn spotbugs:check
 
-      # 9. List files after build for verification
-      - name: List files after build
+      # 7. List files after build for verification
+      - name: List files after build for ${{ matrix.service }}
+        working-directory: ./Viajes-Global-/${{ matrix.service }}
         run: ls -R
