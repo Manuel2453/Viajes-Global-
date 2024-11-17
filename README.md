@@ -35,8 +35,7 @@ Para ejecutar este proyecto, asegúrate de cumplir con los siguientes requisitos
 ### Acceder a la API:
 
 **Hay dos maneras para que puedas hacer uso de nuestra API:** 
-1. Abre tu navegador y accede a `http://localhost:8080/api/swagger-ui/index.html#/` para interactuar con la API con ayuda de Swagger.
-2. Alternativamente, puedes usar herramientas como **Postman** para probar los endpoints, sólo debes ingresar la siguiente URL `http://localhost:8080/api/pedidos/procesar`, asegúrate de usar el métodoo POST, de lo contrario, no podrás utilizar la API.
+Se debe ejecutar el proyecto en Angular adjunto al zip enviado por el aula.
 
 ---
 
